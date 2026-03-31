@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yuges-code/icons.git"
+    "url": "git+https://github.com/yuges-code/vue-icons.git"
   },
   "main": "./dist/vue-icons.umd.cjs",
   "module": "./dist/vue-icons.js",
