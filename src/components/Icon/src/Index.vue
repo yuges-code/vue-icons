@@ -49,9 +49,11 @@
 </script>
 
 <template>
-    <component
-        v-bind="$attrs"
-        :is="iconComponent"
-        v-if="iconComponent"
-    />
+    <Suspense>
+        <component
+            v-bind="$attrs"
+            :is="iconComponent"
+            v-if="iconComponent"
+        />
+    </Suspense>
 </template>
