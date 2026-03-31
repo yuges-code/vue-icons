@@ -26,7 +26,9 @@
       "types": "./dist/types/index.d.ts",
       "import": "./dist/vue-icons.js",
       "require": "./dist/vue-icons.umd.cjs"
-    }
+    },
+    "./dynamic/*": "./dist/icons/dynamic/*",
+    "./regular/*": "./dist/icons/regular/*"
   },
   "scripts": {
     "dev": "vite",

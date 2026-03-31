@@ -12,3 +12,5 @@ export default VueIcons;
 
 export * from './icons';
 export * from './components';
+
+export { Icons, IconType } from '@yuges/icons';

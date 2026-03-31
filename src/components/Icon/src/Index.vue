@@ -1,24 +1,26 @@
 <script setup lang="ts">
-    import { Icons, IconType } from '@yuges/icons';
+    import { IconType } from '@yuges/icons';
+    import { YIconError } from '../../Error';
+    import { YIconLoading } from '../../Loading';
+    import type { IconProps } from '../types/IconProps';
     import { defineAsyncComponent, computed } from 'vue';
 
-    const props = withDefaults(defineProps<{
-        name: Icons['name']['kebab'],
-        type: IconType,
-    }>(), {
-        name: 'seal',
-        type: IconType.DYNAMIC,
+
+    defineOptions({
+        name: 'YIcon',
     });
 
-    const asyncComponentOptions = {
-        loadingComponent: {
-            template: '<span class="icon-loading">⌛</span>'
-        },
-        errorComponent: {
-            template: '<span class="icon-error">⚠️</span>'
-        },
+    const props = withDefaults(defineProps<IconProps>(), {
+        name: 'seal',
+        type: IconType.DYNAMIC,
         delay: 200,
-        timeout: 3000
+        timeout: 3000,
+        errorComponent: YIconError,
+        loadingComponent: YIconLoading,
+    });
+
+    function capitalize(string: string) {  
+        return string.charAt(0).toUpperCase() + string.slice(1);  
     }
 
     const iconComponent = computed(() => {
@@ -27,7 +29,7 @@
         }
 
         const importer = () => {
-            return import(`../../../icons/${props.type}/${props.name}/src/Index.vue`)
+            return import(`./icons/${props.type}/${capitalize(props.name)}.js`)
                 .catch((error) => {
                     console.warn(`Icon "${props.name}" not found:`, error);
 
@@ -37,7 +39,10 @@
 
         return defineAsyncComponent({
             loader: importer,
-            ...asyncComponentOptions
+            delay: props.delay,
+            timeout: props.timeout,
+            errorComponent: props.errorComponent,
+            loadingComponent: props.loadingComponent,
         })
     })
 </script>
