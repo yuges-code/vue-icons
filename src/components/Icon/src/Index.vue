@@ -14,6 +14,7 @@
         type: IconType.DYNAMIC,
         delay: 200,
         timeout: 3000,
+        suspensible: false,
         errorComponent: YIconError,
         loadingComponent: YIconLoading,
     });
@@ -40,6 +41,7 @@
             loader: importer,
             delay: props.delay,
             timeout: props.timeout,
+            suspensible: props.suspensible,
             errorComponent: props.errorComponent,
             loadingComponent: props.loadingComponent,
         })
