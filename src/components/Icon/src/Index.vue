@@ -5,7 +5,6 @@
     import type { IconProps } from '../types/IconProps';
     import { defineAsyncComponent, computed } from 'vue';
 
-
     defineOptions({
         name: 'YIcon',
     });
@@ -29,7 +28,7 @@
         }
 
         const importer = () => {
-            return import(`./icons/${props.type}/${capitalize(props.name)}.js`)
+            return import(`../../../icons/${props.type}/${capitalize(props.name)}/src/Index.vue`)
                 .catch((error) => {
                     console.warn(`Icon "${props.name}" not found:`, error);
 
