@@ -1,8 +1,8 @@
 import path from 'path';
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import dts from 'vite-plugin-dts';
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
 
-// https://vite.dev/config/
 export default defineConfig({
   build: {
     lib: {
@@ -11,8 +11,22 @@ export default defineConfig({
       entry: path.resolve(__dirname, 'src/main.ts'),
     },
     emptyOutDir: true,
+    rollupOptions: {
+      external: ['vue'],
+      output: {
+        exports: 'named',
+        globals: {
+          vue: 'vue',
+        },
+      },
+    },
   },
   plugins: [
-    vue()
+    vue(),
+    dts({
+      outDir: './dist/types',
+      insertTypesEntry: true,
+      tsconfigPath: './tsconfig.app.json',
+    }),
   ],
 });

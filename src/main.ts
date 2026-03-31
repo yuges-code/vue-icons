@@ -1,5 +1,14 @@
-import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
+import { type App } from 'vue';
+import { install } from './helpers/install';
 
-createApp(App).mount('#app')
+import * as icons from './icons';
+import * as components from './components';
+
+const VueIcons = {
+    install: (app: App) => install(app, {...components, ...icons}),
+};
+
+export default VueIcons;
+
+export * from './icons';
+export * from './components';
