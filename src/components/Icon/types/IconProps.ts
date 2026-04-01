@@ -7,7 +7,7 @@ export interface IconProps extends IconPropsBase {
     type?: IconType,
     delay?: number,
     timeout?: number,
-    suspensible: boolean,
+    suspensible?: boolean,
     errorComponent?: Component,
     loadingComponent?: Component,
 };
