@@ -14,7 +14,7 @@
         type: IconType.DYNAMIC,
         delay: 200,
         timeout: 3000,
-        suspensible: false,
+        suspensible: true,
         errorComponent: YIconError,
         loadingComponent: YIconLoading,
     });
@@ -34,8 +34,8 @@
                     console.warn(`Icon "${props.name}" not found:`, error);
 
                     throw error;
-                })
-        }
+                });
+        };
 
         return defineAsyncComponent({
             loader: importer,
@@ -44,16 +44,33 @@
             suspensible: props.suspensible,
             errorComponent: props.errorComponent,
             loadingComponent: props.loadingComponent,
-        })
+        });
     })
 </script>
 
 <template>
-    <Suspense>
+    <Suspense
+        :timeout="props.timeout"
+        :suspensible="props.suspensible"
+    >
         <component
+            :fill="props.fill"
+            :xmlns="props.xmlns"
+            :color="props.color"
+            :width="props.width"
+            :height="props.height"
+            :viewBox="props.viewBox"
+            :strokeWidth="props.strokeWidth"
+
             v-bind="$attrs"
             :is="iconComponent"
             v-if="iconComponent"
         />
+        <template #fallback>
+            <component
+                :is="props.loadingComponent"
+                v-if="props.loadingComponent"
+            ></component>
+        </template>
     </Suspense>
 </template>
