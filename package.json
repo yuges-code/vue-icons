@@ -2,7 +2,7 @@
   "name": "@yuges/vue-icons",
   "description": "Icons Library for Vue Web Apps.",
   "private": false,
-  "version": "0.0.5",
+  "version": "0.0.6",
   "type": "module",
   "license": "MIT",
   "author": {
@@ -15,17 +15,18 @@
     "type": "git",
     "url": "git+https://github.com/yuges-code/vue-icons.git"
   },
+  "main": "./dist/vue-icons.umd.cjs",
   "module": "./dist/vue-icons.js",
-  "types": "./dist/types/vue-icons.d.ts",
+  "types": "./dist/types/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/types/vue-icons.d.ts",
-      "import": "./dist/vue-icons.js"
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/vue-icons.js",
+      "require": "./dist/vue-icons.umd.cjs"
     }
-
   },
   "scripts": {
     "dev": "vite",
@@ -34,13 +35,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@yuges/icons": "^0.0.3",
     "vue": "^3.5.30"
   },
   "devDependencies": {
     "@types/node": "^24.12.0",
     "@vitejs/plugin-vue": "^6.0.5",
     "@vue/tsconfig": "^0.9.0",
-    "@yuges/icons": "^0.0.2",
     "typescript": "~5.9.3",
     "vite": "^8.0.1",
     "vite-plugin-dts": "^4.5.4",

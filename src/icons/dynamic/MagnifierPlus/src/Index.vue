@@ -26,6 +26,7 @@
         :viewBox="viewBox"
         :stroke-width="strokeWidth"
     >
+        <circle cx="22" cy="22" r="14" :stroke="color"/>
         <path d="M22 16V28M16 22H28" stroke-linecap="round" :stroke="color"/>
         <path d="M40 40L32 32" stroke-linecap="round" :stroke="color"/>
     </svg>

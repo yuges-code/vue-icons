@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import { IconType } from '@yuges/icons';
+    import { Icons, IconType } from '@yuges/icons';
     import { YIconError } from '../../Error';
     import { YIconLoading } from '../../Loading';
     import type { IconProps } from '../types/IconProps';
@@ -19,19 +19,23 @@
         loadingComponent: YIconLoading,
     });
 
+    const icon = computed(() => Icons.find(icon => icon.name.kebab === props.name));
+
     function capitalize(string: string) {  
-        return string.charAt(0).toUpperCase() + string.slice(1);  
+        return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
     const iconComponent = computed(() => {
-        if (! props.name) {
+        if (! icon.value) {
             return
         }
 
+        const name = icon.value.name.pascal;
+
         const importer = () => {
-            return import(`../../../icons/${props.type}/${capitalize(props.name)}/src/Index.vue`)
+            return import(`../../../icons/${props.type}/${capitalize(name)}/src/Index.vue`)
                 .catch((error) => {
-                    console.warn(`Icon "${props.name}" not found:`, error);
+                    console.warn(`Icon "${name}" not found:`, error);
 
                     throw error;
                 });

@@ -1,5 +1,5 @@
 import type { Component } from 'vue';
-import { Icons, IconType } from '@yuges/icons';
+import type { Icons, IconType } from '@yuges/icons';
 import type { IconProps as IconPropsBase } from "../../../types/IconProps";
 
 export interface IconProps extends IconPropsBase {

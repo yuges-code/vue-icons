@@ -24,18 +24,18 @@ export const template = (name: string, type: string, svg: any) =>
 
 function stringify(svg: any)
 {
-    const paths = svg?.children?.map((path: any) => {
-        if (path.attributes?.['stroke-width']) {
-            delete path.attributes['stroke-width'];
+    const children = svg?.children?.map((child: any) => {
+        if (child.attributes?.['stroke-width']) {
+            delete child.attributes['stroke-width'];
         }
 
-        if (path.attributes?.['stroke']) {
-            delete path.attributes['stroke'];
+        if (child.attributes?.['stroke']) {
+            delete child.attributes['stroke'];
         }
 
-        path.attributes[':stroke'] = 'color'
+        child.attributes[':stroke'] = 'color'
 
-        return `<path ${ attributes(path.attributes) }/>`
+        return `<${child.name} ${ attributes(child.attributes) }/>`
     });
 
     return `<svg
@@ -47,7 +47,7 @@ function stringify(svg: any)
         :viewBox="viewBox"
         :stroke-width="strokeWidth"
     >
-        ${ paths.join('\n' + ' '.repeat(8)) }
+        ${ children.join('\n' + ' '.repeat(8)) }
     </svg>`;
 }
 

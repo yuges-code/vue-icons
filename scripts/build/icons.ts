@@ -61,7 +61,7 @@ fs.writeFileSync(
 function parse(str: string)
 {
     const svg = str.match(/<svg.*?>/g);
-    const paths = str.match(/<path.*?>/g);
+    const children = str.matchAll(/<(?<name>path|circle) +(?<attributes>.*?)\/>/g);
 
     if (!svg || !svg[0]) {
         return;
@@ -74,23 +74,28 @@ function parse(str: string)
         children: [] as any[],
     };
 
-    paths?.forEach(path => {
+    for(let child of children) {
         data.children.push({
-            name: 'path',
+            name: child.groups?.name,
             type: 'element',
-            attributes: attributes(path),
+            attributes: attributes(child.groups?.attributes),
             children: [],
         });
-    });
+    }
 
     return data;
 }
 
-function attributes(str: string): Record<string, string>
+function attributes(str?: string): Record<string, string>
 {
     let match;
     const attributes = {} as Record<string, string>;
-    const regex = / +?(\S*?) *?= *?["'](.*?)["']/g;
+
+    if (! str) {
+        return attributes;
+    }
+
+    const regex = / *?(\S*?) *?= *?["'](.*?)["']/g;
 
     while ((match = regex.exec(str)) !== null) {
         const name = match[1];
