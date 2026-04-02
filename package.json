@@ -2,7 +2,7 @@
   "name": "@yuges/vue-icons",
   "description": "Icons Library for Vue Web Apps.",
   "private": false,
-  "version": "0.0.6",
+  "version": "0.0.7",
   "type": "module",
   "license": "MIT",
   "author": {
@@ -35,8 +35,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@yuges/icons": "^0.0.3",
-    "vue": "^3.5.30"
+    "@yuges/icons": "^0.0.3"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.25"
   },
   "devDependencies": {
     "@types/node": "^24.12.0",
