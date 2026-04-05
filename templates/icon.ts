@@ -48,6 +48,7 @@ function stringify(svg: any)
         :stroke-width="strokeWidth"
     >
         ${ children.join('\n' + ' '.repeat(8)) }
+        <slot></slot>
     </svg>`;
 }
 

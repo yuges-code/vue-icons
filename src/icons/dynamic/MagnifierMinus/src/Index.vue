@@ -29,5 +29,6 @@
         <circle cx="22" cy="22" r="14" :stroke="color"/>
         <path d="M16 22H28" stroke-linecap="round" :stroke="color"/>
         <path d="M40 40L32 32" stroke-linecap="round" :stroke="color"/>
+        <slot></slot>
     </svg>
 </template>

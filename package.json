@@ -2,7 +2,7 @@
   "name": "@yuges/vue-icons",
   "description": "Icons Library for Vue Web Apps.",
   "private": false,
-  "version": "0.0.7",
+  "version": "0.0.8",
   "type": "module",
   "license": "MIT",
   "author": {

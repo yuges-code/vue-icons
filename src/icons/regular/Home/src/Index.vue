@@ -28,5 +28,6 @@
     >
         <path d="M32 40H16C11.5817 40 8 36.4183 8 32V23.2082C8 20.5739 9.29693 18.1084 11.4678 16.6159L19.4678 11.1159C22.1978 9.23902 25.8022 9.23902 28.5322 11.1159L36.5322 16.6159C38.7031 18.1084 40 20.5739 40 23.2082V32C40 36.4183 36.4183 40 32 40Z" stroke-linecap="round" stroke-linejoin="round" :stroke="color"/>
         <path d="M18 32H30" stroke-linecap="round" stroke-linejoin="round" :stroke="color"/>
+        <slot></slot>
     </svg>
 </template>

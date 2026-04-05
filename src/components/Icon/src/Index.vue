@@ -21,10 +21,6 @@
 
     const icon = computed(() => Icons.find(icon => icon.name.kebab === props.name));
 
-    function capitalize(string: string) {  
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
-
     const iconComponent = computed(() => {
         if (! icon.value) {
             return
@@ -32,17 +28,15 @@
 
         const name = icon.value.name.pascal;
 
-        const importer = () => {
-            return import(`../../../icons/${props.type}/${capitalize(name)}/src/Index.vue`)
-                .catch((error) => {
-                    console.warn(`Icon "${name}" not found:`, error);
+        const loader = () => import(`../../../icons/${props.type}/${name}/src/Index.vue`)
+            .catch((error) => {
+                console.warn(`Icon "${name}" not found:`, error);
 
-                    throw error;
-                });
-        };
+                throw error;
+            });
 
         return defineAsyncComponent({
-            loader: importer,
+            loader: loader,
             delay: props.delay,
             timeout: props.timeout,
             suspensible: props.suspensible,
@@ -54,27 +48,26 @@
 
 <template>
     <Suspense
-        :timeout="props.timeout"
-        :suspensible="props.suspensible"
+        :timeout="timeout"
+        :suspensible="suspensible"
     >
         <component
-            :fill="props.fill"
-            :xmlns="props.xmlns"
-            :color="props.color"
-            :width="props.width"
-            :height="props.height"
-            :viewBox="props.viewBox"
-            :strokeWidth="props.strokeWidth"
+            :fill="fill"
+            :xmlns="xmlns"
+            :color="color"
+            :width="width"
+            :height="height"
+            :view-box="viewBox"
+            :stroke-width="strokeWidth"
 
             v-bind="$attrs"
             :is="iconComponent"
             v-if="iconComponent"
-        />
+        >
+            <slot></slot>
+        </component>
         <template #fallback>
-            <component
-                :is="props.loadingComponent"
-                v-if="props.loadingComponent"
-            ></component>
+            <component :is="loadingComponent" v-if="loadingComponent"/>
         </template>
     </Suspense>
 </template>

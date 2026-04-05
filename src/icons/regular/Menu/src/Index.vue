@@ -28,5 +28,6 @@
     >
         <path d="M8 16H40" stroke-linecap="round" :stroke="color"/>
         <path d="M8 32H40" stroke-linecap="round" :stroke="color"/>
+        <slot></slot>
     </svg>
 </template>

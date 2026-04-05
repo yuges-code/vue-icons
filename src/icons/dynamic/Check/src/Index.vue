@@ -27,5 +27,6 @@
         :stroke-width="strokeWidth"
     >
         <path d="M12 25.5882L19 33L27 24.5294L36 15" stroke-linecap="round" stroke-linejoin="round" :stroke="color"/>
+        <slot></slot>
     </svg>
 </template>
